@@ -1,0 +1,21 @@
+class Solution:
+    def minScore(self, n: int, roads: List[List[int]]) -> int:
+        from collections import defaultdict
+
+        graph = defaultdict(list)
+        for u, v, w in roads:
+            graph[u].append((v, w))
+            graph[v].append((u, w))
+
+        visited = set()
+        self.ans = float('inf')
+
+        def dfs(node):
+            visited.add(node)
+            for nei, w in graph[node]:
+                self.ans = min(self.ans, w)
+                if nei not in visited:
+                    dfs(nei)
+
+        dfs(1)
+        return self.ans
