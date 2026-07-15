@@ -1,0 +1,4 @@
+class Solution:
+    def gcdOfOddEvenSums(self, n: int) -> int:
+        if gcd(n,n+1) == 1:
+            return n
